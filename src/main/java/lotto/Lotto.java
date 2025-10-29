@@ -7,7 +7,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        rangeValidate(numbers);
         this.numbers = numbers;
+    }
+
+    public void addBonusNum(int bonusNum) {
+        this.numbers.add(bonusNum);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +21,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void rangeValidate(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num > 45 || num < 1) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45까지 입력 가능합니다.");
+            }
+        }
+    }
 }

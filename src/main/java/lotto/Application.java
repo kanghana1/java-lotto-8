@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.io.InputStream;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputStream inputStream = new InputStream();
+        inputStream.inputPurchasePrice();
     }
 }

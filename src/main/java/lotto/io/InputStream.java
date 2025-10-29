@@ -1,20 +1,21 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.LottoPublisher;
 import lotto.WinningChecker;
 
 public class InputStream {
-    private OutputStream outputStream;
+    private LottoPublisher lottoPublisher;
     private WinningChecker winningChecker;
 
     public InputStream() {
-        this.outputStream = new OutputStream();
         this.winningChecker = new WinningChecker();
+        this.lottoPublisher = new LottoPublisher();
     }
     public void inputPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
-        outputStream.printLottos(price);
+        String price = Console.readLine();
+
     }
 
     public void inputWinningNumber() {
