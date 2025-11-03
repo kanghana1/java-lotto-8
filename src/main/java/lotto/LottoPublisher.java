@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.io.OutputStream;
 
 public class LottoPublisher {
@@ -40,7 +41,7 @@ public class LottoPublisher {
     private void publishLottoNumber(int cnt) {
         for (int i = 0; i < cnt ; i++) {
             List<Integer> nums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(nums);
+            nums = nums.stream().sorted().collect(Collectors.toList());
             lottoNums.add(new Lotto(nums));
         }
     }

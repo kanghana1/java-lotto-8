@@ -15,10 +15,13 @@ public class OutputStream {
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
             System.out.print("[");
-            for (Integer num : numbers) {
-                System.out.print(num + ", ");
+            for (int i = 0 ; i < 6 ; i++) {
+                if (i == 5) {
+                    System.out.println(numbers.get(i) + "]");
+                    break;
+                }
+                System.out.print(numbers.get(i) + ", ");
             }
-            System.out.println("\b\b]");
         }
     }
 
@@ -33,7 +36,7 @@ public class OutputStream {
             System.out.println(resultFormat[i] + result[i] + "개");
         }
 
-        System.out.println("총 수익률은 " + Math.round(rateOfReturn) + "%입니다.");
+        System.out.println("총 수익률은 " + Math.round(rateOfReturn * 10) / 10.0 + "%입니다.");
     }
 
     private void makeStringFormat() {

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,8 +17,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        numbers = numbers.stream().distinct().collect(Collectors.toList());
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 없이 6개여야 합니다.");
         }
     }
 
