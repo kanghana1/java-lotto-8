@@ -53,7 +53,7 @@ public class WinningChecker {
                     idx++;
                     break;
                 } else if (numbers.get(idx) > num) break;
-                else idx++;
+                idx++;
             }
         }
         if (cnt == 5 && bonus) return 6;

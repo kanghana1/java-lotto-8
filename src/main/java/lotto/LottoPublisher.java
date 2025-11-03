@@ -18,6 +18,15 @@ public class LottoPublisher {
         outputStream.printLottos(lottoNums);
     }
 
+    public int getPrice() {
+        return UNIT * lottoNums.size();
+    }
+
+    public List<Lotto> getLottoNums() {
+        return lottoNums;
+    }
+
+
     private int validate(String price) {
         try {
             int purchasePrice = Integer.parseInt(price);
@@ -28,15 +37,6 @@ public class LottoPublisher {
             throw new IllegalArgumentException("[ERROR] 정수타입을 입력해주세요.");
         }
     }
-
-    public int getPrice() {
-        return UNIT * lottoNums.size();
-    }
-
-    public List<Lotto> getLottoNums() {
-        return lottoNums;
-    }
-
 
     private void publishLottoNumber(int cnt) {
         for (int i = 0; i < cnt ; i++) {
