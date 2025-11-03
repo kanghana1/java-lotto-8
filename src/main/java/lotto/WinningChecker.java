@@ -32,7 +32,7 @@ public class WinningChecker {
         for (int i = 0 ; i < 5 ; i++) {
             sum += winningCnt[i] * winnings[i];
         }
-        return (double) sum / price;
+        return (double) sum / price * 100;
     }
 
     private int count(Lotto lotto, int bonusNum) {
@@ -50,8 +50,10 @@ public class WinningChecker {
 
                 if (numbers.get(idx) == num) {
                     cnt++;
+                    idx++;
                     break;
-                } else idx++;
+                } else if (numbers.get(idx) > num) break;
+                else idx++;
             }
         }
         if (cnt == 5 && bonus) return 6;
@@ -60,15 +62,11 @@ public class WinningChecker {
     }
 
     private int bonusNumCheck(String num) {
-        try {
-            int bonusNum = Integer.parseInt(num);
-            if (winningNums.contains(bonusNum)) {
-                throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되는 수는 입력이 불가능합니다.");
-            }
-            return bonusNum;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수형만 입력 가능합니다.");
+        int bonus = validate(num);
+        if (winningNums.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되는 수는 입력이 불가능합니다.");
         }
+        return bonus;
     }
 
     private void winningNumsCheck(String nums) {
