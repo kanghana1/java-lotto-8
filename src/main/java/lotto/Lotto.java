@@ -11,8 +11,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public void addBonusNum(int bonusNum) {
-        this.numbers.add(bonusNum);
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {
