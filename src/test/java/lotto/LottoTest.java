@@ -21,5 +21,70 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호의_개수가_6개보다_적으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_45보다_크면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 47)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_1보다_작으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호와_당첨_번호가_중복되면_예외_발생() {
+        WinningChecker winningChecker = new WinningChecker();
+
+        assertThatThrownBy(() -> winningChecker.resultCheck("1, 2, 3, 4, 5, 6", "5", null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨번호가_6개를_넘으면_예외_발생() {
+        WinningChecker winningChecker = new WinningChecker();
+
+        assertThatThrownBy(() -> winningChecker.resultCheck("1, 2, 3, 4, 5, 6, 7", "12", null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨번호가_6개가_안되면_예외_발생() {
+        WinningChecker winningChecker = new WinningChecker();
+
+        assertThatThrownBy(() -> winningChecker.resultCheck("1, 2, 3, 4, 5", "12", null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨번호가_중복되면_예외_발생() {
+        WinningChecker winningChecker = new WinningChecker();
+
+        assertThatThrownBy(() -> winningChecker.resultCheck("1, 2, 3, 5, 6, 6", "12", null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨번호가_6개를_초과하고_중복되면_예외_발생() {
+        WinningChecker winningChecker = new WinningChecker();
+
+        assertThatThrownBy(() -> winningChecker.resultCheck("1, 2, 3, 5, 6, 6, 7", "12", null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨번호가_정수형으로_파싱_불가하면_예외_발생() {
+        WinningChecker winningChecker = new WinningChecker();
+
+        assertThatThrownBy(() -> winningChecker.resultCheck("1, 2, 3, 4, 5, aa", "12", null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

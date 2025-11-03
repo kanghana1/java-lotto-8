@@ -61,7 +61,7 @@ public class WinningChecker {
         return cnt;
     }
 
-    private int bonusNumCheck(String num) {
+    int bonusNumCheck(String num) {
         int bonus = validate(num);
         if (winningNums.contains(bonus)) {
             throw new IllegalArgumentException("[ERROR] 당첨번호와 중복되는 수는 입력이 불가능합니다.");
@@ -72,10 +72,14 @@ public class WinningChecker {
     private void winningNumsCheck(String nums) {
         try {
             String[] winningNumbers = nums.trim().split(",");
+            if (winningNumbers.length != 6) {
+                throw new IllegalArgumentException("[ERROR] 당첨번호는 6개를 입력해야 합니다.");
+            }
+
             winningNums = Arrays.stream(winningNumbers)
                     .map(this::validate)
-                    .distinct()
                     .sorted()
+                    .distinct()
                     .collect(Collectors.toList());
 
             if (winningNums.size() != 6) {
